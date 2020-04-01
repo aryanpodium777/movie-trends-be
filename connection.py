@@ -12,7 +12,7 @@ class Connection:
     def run(self,query,isSingle,options=[]):
         try:
             cursor = self.db.cursor()
-            cursor.execute(query,options)  
+            cursor.execute(query,options)
             if isSingle:
                 result = cursor.fetchone()
             else:

@@ -7,4 +7,4 @@ class MovieinfoService:
 		return self.movieinfoDao.fetchAllMovieinfo()
 
 	def fetchMovieinfo(self,movieinfoId):
-		return {}
+		return self.movieinfoDao.fetchOneMovie(movieinfoId)
