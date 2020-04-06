@@ -4,6 +4,7 @@ from director_dao import DirectorDao
 from writer_dao import WriterDao
 from actor_dao import ActorDao
 from  model.movieinfo import  Movieinfo
+from datetime import datetime, timedelta
 
 class MovieinfoDao:
 	connection = Connection()
@@ -12,16 +13,29 @@ class MovieinfoDao:
 	writerDao = WriterDao()
 	actorDao = ActorDao()
 
-	def fetchAllMovieinfo(self):
+	def fetchAllMovieinfo(self,queryParams):
+		inTheatre=queryParams.get('inTheatre')
+		comingSoon=queryParams.get('comingSoon')
 		query = "SELECT * FROM `movieinfo`"
-		output = self.connection.run(query,False)
+		if inTheatre or comingSoon:
+			query=query+' WHERE released between %s and %s'
+
+		options=''
+		today = datetime.today()
+		week_ago = today - timedelta(days=7)
+		week_next=today + timedelta(days=7)
+		if inTheatre:
+			options=[week_ago.date(), today.date()]
+		if comingSoon:
+			options=[today.date(),week_next.date()]
+		output = self.connection.run(query,False,options)
 		list=[]
 		for record in output:
 			id=record[0]
 			title = record[1]
 			year = record[2]
 			Rated = record[3]
-			Released = record[4]
+			Released = record[4].strftime('%Y-%m-%d')
 			runtime  = record[5]
 			_Genre  = self.genreDao.fetchGenreByMovieinfoId(id)
 			_Director = self.directorDao.fetchDirectorByMovieinfoId(id)
@@ -50,7 +64,7 @@ class MovieinfoDao:
 		title = record[1]
 		year = record[2]
 		Rated = record[3]
-		Released = record[4]
+		Released = record[4].strftime('%Y-%m-%d')
 		runtime  = record[5]
 		_Genre  = self.genreDao.fetchGenreByMovieinfoId(id)
 		_Director = self.directorDao.fetchDirectorByMovieinfoId(id)

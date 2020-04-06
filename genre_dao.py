@@ -16,4 +16,14 @@ class GenreDao:
 		
 		return list
 
-		
+	def fetchAllGenreinfo(self):
+		query = "SELECT * FROM genre"
+		output = self.connection.run(query,False)
+		list = []
+		for record in output:
+			id=record[0]
+			title = record[1]
+			genreObj = Genre(id,title)
+			list.append(genreObj)
+		return list
+	

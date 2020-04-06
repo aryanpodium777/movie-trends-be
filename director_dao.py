@@ -17,3 +17,13 @@ class DirectorDao:
 		return list
 
 		
+	def fetchAllDirectorinfo(self):
+		query = "SELECT * FROM director"
+		output = self.connection.run(query,False)
+		list = []
+		for record in output:
+			id=record[0]
+			name = record[1]
+			directorObj =  Director(id,name)
+			list.append(directorObj)
+		return list

@@ -18,4 +18,16 @@ class ActorDao:
 		return list
 
 		
- 
+	def fetchAllActorinfo(self):
+		query = "SELECT * FROM actor"
+		output = self.connection.run(query,False)
+		list = []
+		for record in output:
+			id=record[0]
+			name = record[1]
+			gender = record[2]
+			actorObj = Actor(id,name,gender)
+			list.append(actorObj)
+		return list
+
+

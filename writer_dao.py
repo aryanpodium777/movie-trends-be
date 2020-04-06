@@ -17,4 +17,18 @@ class WriterDao:
 		
 		return list
 
-		
+	def fetchAllWriterinfo(self):
+		query = "SELECT * FROM writer"
+		output = self.connection.run(query,False)
+		list = []
+		for record in output:
+			id=record[0]
+			name = record[1]
+			genre = record[2]
+			writerObj = Writer(id,name,genre)
+			list.append(writerObj)
+		return list
+	
+	
+	
+
