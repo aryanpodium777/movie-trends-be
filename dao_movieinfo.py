@@ -1,8 +1,8 @@
 from connection import Connection
-from genre_dao import GenreDao
-from director_dao import DirectorDao
-from writer_dao import WriterDao
-from actor_dao import ActorDao
+from dao_genre import GenreDao
+from dao_director import DirectorDao
+from dao_writer import WriterDao
+from dao_actor import ActorDao
 from  model.movieinfo import  Movieinfo
 from datetime import datetime, timedelta
 

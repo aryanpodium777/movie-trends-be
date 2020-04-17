@@ -1,9 +1,9 @@
-from movieinfo_dao import MovieinfoDao
-from actor_dao import ActorDao
-from writer_dao import WriterDao
-from director_dao import DirectorDao
-from genre_dao import GenreDao
-from reviewer_dao import ReviewerDao
+from dao_movieinfo import MovieinfoDao
+from dao_actor import ActorDao
+from dao_writer import WriterDao
+from dao_director import DirectorDao
+from dao_genre import GenreDao
+from dao_reviewer import ReviewerDao
 
 class ApiService:
 	movieinfoDao = MovieinfoDao()
