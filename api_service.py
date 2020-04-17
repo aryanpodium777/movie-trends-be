@@ -3,6 +3,7 @@ from actor_dao import ActorDao
 from writer_dao import WriterDao
 from director_dao import DirectorDao
 from genre_dao import GenreDao
+from reviewer_dao import ReviewerDao
 
 class ApiService:
 	movieinfoDao = MovieinfoDao()
@@ -10,6 +11,7 @@ class ApiService:
 	writerDao = WriterDao()
 	directorDao = DirectorDao()
 	genreDao = GenreDao()
+	reviewerDao = ReviewerDao()
 
 	def fetchAllMovieinfo(self,queryParams):
 		return self.movieinfoDao.fetchAllMovieinfo(queryParams)
@@ -28,3 +30,10 @@ class ApiService:
 
 	def fetchAllGenreinfo(self):
 		return self.genreDao.fetchAllGenreinfo()
+
+	def signInSignUp(self,user):    
+		isUser=self.reviewerDao.fetchReviwer(user)
+		if isUser:
+			return self.reviewerDao.updateReviewer(user)
+		else:
+			return self.reviewerDao.insertReviewer(user)

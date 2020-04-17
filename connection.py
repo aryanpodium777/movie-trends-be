@@ -9,15 +9,18 @@ class Connection:
             db="movie_trends"
             )
 
-    def run(self,query,isSingle,options=[]):
+    def run(self,query,isSingle,options=[],isFetchQuery=True):
         try:
             cursor = self.db.cursor()
-            cursor.execute(query,options)
-            if isSingle:
-                result = cursor.fetchone()
+            output=cursor.execute(query,options)
+            if isFetchQuery:
+                if isSingle:
+                    result = cursor.fetchone()
+                else:
+                    result = cursor.fetchall()
+                return result
             else:
-                result = cursor.fetchall()
-            return result
+                return 1
         except Exception as e:
             print(e,'-------exception------') 
             

@@ -3,61 +3,53 @@ from flask import Flask, jsonify, request
 from flask_restful import Resource, Api 
 from api_service import ApiService
 from flask_cors import CORS
+import json
 
 app = Flask(__name__) 
 CORS(app)
 api = Api(app) 
+apiService = ApiService()
 
-class AllMovieInfo(Resource): 
-	apiService = ApiService()
-
-  # Corresponds to GET request 
-	def get(self): 
-		return self.apiService.fetchAllMovieinfo(request.args)
-
-class MovieInfo(Resource): 
-	apiService = ApiService()
-
-  # Corresponds to GET request 
-	def get(self,movieInfoId): 
-		return self.apiService.fetchMovieinfo(movieInfoId)
-
-class Actors(Resource):
-	apiService = ApiService()
-
-	def get(self):
-		return self.apiService.fetchAllActorinfo()
-		
-class Writers(Resource):
-	apiService = ApiService()
-
-	def get(self):
-		return self.apiService.fetchAllWriterinfo()
-
-class Directors(Resource):
-	apiService = ApiService()
-
-	def get(self):
-		return self.apiService.fetchAllDirectorinfo()
-
-class Genres(Resource):
-	apiService = ApiService()
-
-	def get(self):
-		return self.apiService.fetchAllGenreinfo()
-		
+@app.route('/movie-info',methods=['GET'])
+def fetchAllMovieInfo():
+	return jsonify(apiService.fetchAllMovieinfo(request.args))
 
 
+@app.route('/movie-info/<string:movieInfoId>',methods=['GET'])
+def fetchSingleMovieInfo(movieInfoId):
+	return jsonify(apiService.fetchMovieinfo(movieInfoId))
 
 
+@app.route('/actors',methods=['GET'])
+def fetchActors():
+	return jsonify(apiService.fetchAllActorinfo())
 
-# adding the defined resources along with their corresponding urls 
-api.add_resource(AllMovieInfo, '/movie-info')
-api.add_resource(MovieInfo, '/movie-info/<string:movieInfoId>')
-api.add_resource(Actors,'/actors')
-api.add_resource(Writers,'/writers')
-api.add_resource(Directors,'/directors')
-api.add_resource(Genres,'/genres')
+
+@app.route('/writers',methods=['GET'])
+def fetchWriters():
+	return jsonify(apiService.fetchAllWriterinfo())
+
+
+@app.route('/directors',methods=['GET'])
+def fetchDirectors():
+	return jsonify(apiService.fetchAllDirectorinfo())
+
+
+@app.route('/genres',methods=['GET'])
+def fetchGenres():
+	return jsonify(apiService.fetchAllGenreinfo())
+
+
+@app.route('/user',methods=['POST'])
+def user():
+	user = request.get_json()
+	return jsonify(apiService.signInSignUp(user))
+
+
+@app.before_request
+def before_request():
+    print('Interceptor',request)
+
 # driver function 
 if __name__ == '__main__': 
 
