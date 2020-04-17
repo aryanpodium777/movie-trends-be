@@ -5,8 +5,9 @@ from dao_writer import WriterDao
 from dao_actor import ActorDao
 from  model.movieinfo import  Movieinfo
 from datetime import datetime, timedelta
+from singleton import Singleton
 
-class MovieinfoDao:
+class MovieinfoDao(metaclass=Singleton):
 	connection = Connection()
 	genreDao = GenreDao()
 	directorDao = DirectorDao()

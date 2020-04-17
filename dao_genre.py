@@ -1,7 +1,8 @@
 from connection import Connection
 from model.genre import  Genre
+from singleton import Singleton
 
-class GenreDao:
+class GenreDao(metaclass=Singleton):
 	connection = Connection()
 
 	def fetchGenreByMovieinfoId(self,movieinfoId):

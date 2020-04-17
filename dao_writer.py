@@ -1,7 +1,8 @@
 from connection import Connection
 from model.writer import Writer
+from singleton import Singleton
 
-class WriterDao:
+class WriterDao(metaclass=Singleton):
 	connection = Connection()
 
 	def fetchWriterByMovieinfoId(self,movieinfoId):

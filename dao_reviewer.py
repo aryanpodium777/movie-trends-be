@@ -1,7 +1,8 @@
 from connection import Connection
 from model.reviewer import Reviewer
+from singleton import Singleton
 
-class ReviewerDao:
+class ReviewerDao(metaclass=Singleton):
 	connection = Connection()
 
 	def insertReviewer(self,user):

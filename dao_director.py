@@ -1,7 +1,8 @@
 from connection import Connection
 from model.director import Director
+from singleton import Singleton
 
-class DirectorDao:
+class DirectorDao(metaclass=Singleton):
 	connection = Connection()
 
 	def fetchDirectorByMovieinfoId(self,movieinfoId):

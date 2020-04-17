@@ -1,5 +1,7 @@
 import mysql.connector
-class Connection:
+from singleton import Singleton
+
+class Connection(metaclass=Singleton):
     def __init__(self):
         self.db = mysql.connector.connect(
             host="localhost",
@@ -12,7 +14,7 @@ class Connection:
     def run(self,query,isSingle,options=[],isFetchQuery=True):
         try:
             cursor = self.db.cursor()
-            output=cursor.execute(query,options)
+            cursor.execute(query,options)
             if isFetchQuery:
                 if isSingle:
                     result = cursor.fetchone()

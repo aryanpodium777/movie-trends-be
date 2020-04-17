@@ -1,7 +1,8 @@
 from connection import Connection
 from model.actor import Actor
+from singleton import Singleton
 
-class ActorDao:
+class ActorDao(metaclass=Singleton):
 	connection = Connection()
 
 	def fetchActorByMovieinfoId(self,movieinfoId):
