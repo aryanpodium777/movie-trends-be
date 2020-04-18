@@ -2,9 +2,6 @@ from connection import run
 from model.writer import Writer
 from singleton import Singleton
 
-# class WriterDao(metaclass=Singleton):
-# connection = Connection()
-
 
 def fetchWriterByMovieinfoIdDAO(movieinfoId):
     query = "SELECT id,name,genre FROM `movieinfo_writer` AS m LEFT JOIN `writer` AS w ON m.writer_id = w.id WHERE m.movie_info_id = %s"

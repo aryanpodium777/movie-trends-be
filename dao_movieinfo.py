@@ -1,12 +1,4 @@
 # from connection import Connection
-# from dao_genre import GenreDao
-# from dao_director import DirectorDao
-# from dao_writer import WriterDao
-# from dao_actor import ActorDao
-# from  model.movieinfo import  Movieinfo
-# from datetime import datetime, timedelta
-# from singleton import Singleton
-
 from connection import run
 from model.movieinfo import Movieinfo
 from datetime import datetime, timedelta
@@ -14,15 +6,6 @@ from dao_genre import fetchGenreByMovieinfoIdDAO
 from dao_director import fetchDirectorByMovieinfoIdDAO
 from dao_writer import fetchWriterByMovieinfoIdDAO
 from dao_actor import fetchActorByMovieinfoIdDAO
-
-
-# class MovieinfoDao(metaclass=Singleton):
-# connection = Connection()
-# 	genreDao = GenreDao()
-# 	directorDao = DirectorDao()
-# 	writerDao = WriterDao()
-#   actorDao = ActorDao()
-
 
 def fetchAllMovieinfoDAO(queryParams):
 	inTheatre = queryParams.get('inTheatre')

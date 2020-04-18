@@ -1,10 +1,3 @@
-# from dao_movieinfo import MovieinfoDao
-# from dao_actor import ActorDao
-# from dao_writer import WriterDao
-# from dao_director import DirectorDao
-# from dao_genre import GenreDao
-# from dao_reviewer import ReviewerDao
-
 from dao_movieinfo import fetchAllMovieinfoDAO
 from dao_movieinfo import fetchOneMovieDAO
 from dao_actor import fetchAllActorinfoDAO
@@ -14,15 +7,6 @@ from dao_genre import fetchAllGenreinfoDAO
 from dao_reviewer import fetchReviwerDAO
 from dao_reviewer import updateReviewerDAO
 from dao_reviewer import insertReviewerDAO
-
-
-# class ApiService:
-# 	movieinfoDao = MovieinfoDao()
-# 	actorDao = ActorDao()
-# 	writerDao = WriterDao()
-# 	directorDao = DirectorDao()
-# 	genreDao = GenreDao()
-# 	reviewerDao = ReviewerDao()
 
 
 def fetchAllMovieinfoService(queryParams):
