@@ -1,13 +1,13 @@
-from connection import Connection
+from connection import run
 from model.actor import Actor
 from singleton import Singleton
 
-class ActorDao(metaclass=Singleton):
-	connection = Connection()
+# class ActorDao(metaclass=Singleton):
+# connection = Connection()
 
-	def fetchActorByMovieinfoId(self,movieinfoId):
+def fetchActorByMovieinfoIdDAO(movieinfoId):
 		query = "SELECT id,name,gender FROM `movieinfo_actor` AS m LEFT JOIN `actor` AS a ON m.actor_id = a.id WHERE m.movie_info_id = %s"
-		output = self.connection.run(query,False,[movieinfoId])
+		output = run(query,False,[movieinfoId])
 		list=[]
 		for record in output:
 			id=record[0]
@@ -19,9 +19,9 @@ class ActorDao(metaclass=Singleton):
 		return list
 
 		
-	def fetchAllActorinfo(self):
+def fetchAllActorinfoDAO():
 		query = "SELECT * FROM actor"
-		output = self.connection.run(query,False)
+		output = run(query,False)
 		list = []
 		for record in output:
 			id=record[0]

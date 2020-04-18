@@ -1,39 +1,57 @@
-from dao_movieinfo import MovieinfoDao
-from dao_actor import ActorDao
-from dao_writer import WriterDao
-from dao_director import DirectorDao
-from dao_genre import GenreDao
-from dao_reviewer import ReviewerDao
+# from dao_movieinfo import MovieinfoDao
+# from dao_actor import ActorDao
+# from dao_writer import WriterDao
+# from dao_director import DirectorDao
+# from dao_genre import GenreDao
+# from dao_reviewer import ReviewerDao
 
-class ApiService:
-	movieinfoDao = MovieinfoDao()
-	actorDao = ActorDao()
-	writerDao = WriterDao()
-	directorDao = DirectorDao()
-	genreDao = GenreDao()
-	reviewerDao = ReviewerDao()
+from dao_movieinfo import fetchAllMovieinfoDAO
+from dao_movieinfo import fetchOneMovieDAO
+from dao_actor import fetchAllActorinfoDAO
+from dao_writer import fetchAllWriterinfoDAO
+from dao_director import fetchAllDirectorinfoDAO
+from dao_genre import fetchAllGenreinfoDAO
+from dao_reviewer import fetchReviwerDAO
+from dao_reviewer import updateReviewerDAO
+from dao_reviewer import insertReviewerDAO
 
-	def fetchAllMovieinfo(self,queryParams):
-		return self.movieinfoDao.fetchAllMovieinfo(queryParams)
 
-	def fetchMovieinfo(self,movieinfoId):
-		return self.movieinfoDao.fetchOneMovie(movieinfoId)
+# class ApiService:
+# 	movieinfoDao = MovieinfoDao()
+# 	actorDao = ActorDao()
+# 	writerDao = WriterDao()
+# 	directorDao = DirectorDao()
+# 	genreDao = GenreDao()
+# 	reviewerDao = ReviewerDao()
 
-	def fetchAllActorinfo(self):
-		return self.actorDao.fetchAllActorinfo()	
 
-	def fetchAllWriterinfo(self):
-		return self.writerDao.fetchAllWriterinfo()	
+def fetchAllMovieinfoService(queryParams):
+    return fetchAllMovieinfoDAO(queryParams)
 
-	def fetchAllDirectorinfo(self):
-		return self.directorDao.fetchAllDirectorinfo()
 
-	def fetchAllGenreinfo(self):
-		return self.genreDao.fetchAllGenreinfo()
+def fetchMovieinfoService(movieinfoId):
+    return fetchOneMovieDAO(movieinfoId)
 
-	def signInSignUp(self,user):    
-		isUser=self.reviewerDao.fetchReviwer(user)
-		if isUser:
-			return self.reviewerDao.updateReviewer(user)
-		else:
-			return self.reviewerDao.insertReviewer(user)
+
+def fetchAllActorinfoService():
+    return fetchAllActorinfoDAO()
+
+
+def fetchAllWriterinfoService():
+    return fetchAllWriterinfoDAO()
+
+
+def fetchAllDirectorinfoService():
+    return fetchAllDirectorinfoDAO()
+
+
+def fetchAllGenreinfoService():
+    return fetchAllGenreinfoDAO()
+
+
+def signInSignUpService(user):
+    isUser = fetchReviwerDAO(user)
+    if isUser:
+        return updateReviewerDAO(user)
+    else:
+        return insertReviewerDAO(user)
