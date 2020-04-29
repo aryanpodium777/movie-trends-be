@@ -40,6 +40,14 @@ def fetchGenres():
 	return jsonify(apiService.fetchAllGenreinfo())
 
 
+@app.route('/analytics/doughnut',methods=['GET'])
+def fetchAnalyticsDoughnutInfo():
+	return jsonify(apiService.fetchAnalyticsDoughnut(request.args))
+
+@app.route('/analytics/bar',methods=['GET'])
+def fetchAnalyticsBarInfo():
+	return jsonify(apiService.fetchAnalyticsBar(request.args))
+
 @app.route('/user',methods=['POST'])
 def user():
 	user = request.get_json()
@@ -48,7 +56,7 @@ def user():
 
 @app.before_request
 def before_request():
-    print('Interceptor',request)
+	print('Interceptor',request)
 
 # driver function 
 if __name__ == '__main__': 

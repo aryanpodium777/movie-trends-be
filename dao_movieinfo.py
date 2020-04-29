@@ -3,7 +3,7 @@ from dao_genre import GenreDao
 from dao_director import DirectorDao
 from dao_writer import WriterDao
 from dao_actor import ActorDao
-from  model.movieinfo import  Movieinfo
+from  model.movieinfo import Movieinfo
 from datetime import datetime, timedelta
 from singleton import Singleton
 

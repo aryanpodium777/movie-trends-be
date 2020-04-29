@@ -5,6 +5,7 @@ from dao_director import DirectorDao
 from dao_genre import GenreDao
 from dao_reviewer import ReviewerDao
 
+
 class ApiService:
 	movieinfoDao = MovieinfoDao()
 	actorDao = ActorDao()
@@ -13,17 +14,17 @@ class ApiService:
 	genreDao = GenreDao()
 	reviewerDao = ReviewerDao()
 
-	def fetchAllMovieinfo(self,queryParams):
+	def fetchAllMovieinfo(self, queryParams):
 		return self.movieinfoDao.fetchAllMovieinfo(queryParams)
 
-	def fetchMovieinfo(self,movieinfoId):
+	def fetchMovieinfo(self, movieinfoId):
 		return self.movieinfoDao.fetchOneMovie(movieinfoId)
 
 	def fetchAllActorinfo(self):
-		return self.actorDao.fetchAllActorinfo()	
+		return self.actorDao.fetchAllActorinfo()
 
 	def fetchAllWriterinfo(self):
-		return self.writerDao.fetchAllWriterinfo()	
+		return self.writerDao.fetchAllWriterinfo()
 
 	def fetchAllDirectorinfo(self):
 		return self.directorDao.fetchAllDirectorinfo()
@@ -31,9 +32,34 @@ class ApiService:
 	def fetchAllGenreinfo(self):
 		return self.genreDao.fetchAllGenreinfo()
 
-	def signInSignUp(self,user):    
-		isUser=self.reviewerDao.fetchReviwer(user)
+	def signInSignUp(self, user):
+		isUser = self.reviewerDao.fetchReviwer(user)
 		if isUser:
 			return self.reviewerDao.updateReviewer(user)
 		else:
 			return self.reviewerDao.insertReviewer(user)
+
+	def fetchAnalyticsDoughnut(self, query):
+		of = query['of']
+		if of == 'genre':
+			return self.genreDao.fetchGenreByAnalyticsDoughnut()
+		elif of == 'actor':
+				return self.actorDao.fetchActorByAnalyticsDoughnut()
+		elif of == 'director':
+			return self.directorDao.fetchDirectorByAnalyticsDoughnut()
+		elif of == 'writer':
+			return self.writerDao.fetchWriterByAnalyticsDoughnut()
+
+	def fetchAnalyticsBar(self, query):
+		of = query['of']
+		id = query['id']
+		if of == 'genre':
+			return self.genreDao.fetchGenreByAnalyticsBar(id)
+		elif of == 'actor':
+			return self.actorDao.fetchActorByAnalyticsBar(id)
+		elif of == 'director':
+			return self.directorDao.fetchDirectorByAnalyticsBar()
+		elif of == 'writer':
+			return self.writerDao.fetchWriterByAnalyticsBar()
+	
+

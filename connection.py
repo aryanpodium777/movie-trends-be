@@ -4,9 +4,9 @@ from singleton import Singleton
 
 class Connection(metaclass=Singleton):
 
-    host = "db4free.net"
-    user = "aryangupta"
-    password = "mtbbd123"
+    host = "localhost"
+    user = "root"
+    password = ""
 
     def __init__(self):
         self.db = mysql.connector.connect(
