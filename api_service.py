@@ -58,8 +58,8 @@ class ApiService:
 		elif of == 'actor':
 			return self.actorDao.fetchActorByAnalyticsBar(id)
 		elif of == 'director':
-			return self.directorDao.fetchDirectorByAnalyticsBar()
+			return self.directorDao.fetchDirectorByAnalyticsBar(id)
 		elif of == 'writer':
-			return self.writerDao.fetchWriterByAnalyticsBar()
+			return self.writerDao.fetchWriterByAnalyticsBar(id)
 	
 

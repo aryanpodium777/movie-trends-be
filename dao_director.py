@@ -44,7 +44,7 @@ class DirectorDao(metaclass=Singleton):
 		return list
      
 	def fetchDirectorByAnalyticsBar(self,id):
-		query = "SELECT YEAR(m.`Released`) as year, SUM( `BoxOffice` ) AS box_office_collection FROM `movieinfo_director` AS md LEFT JOIN `movieinfo` AS m ON md.`movie_info_id` = m.`id` WHERE mw.`director_id` = %s GROUP BY YEAR(m.`Released`)"	
+		query = "SELECT YEAR(m.`Released`) as year, SUM( `BoxOffice` ) AS box_office_collection FROM `movieinfo_director` AS md LEFT JOIN `movieinfo` AS m ON md.`movie_info_id` = m.`id` WHERE md.`director_id` = %s GROUP BY YEAR(m.`Released`)"	
 		output = self.connection.run(query,False,[id])
 		list = []
 		for record in output:
