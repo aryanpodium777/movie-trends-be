@@ -4,6 +4,8 @@ from dao_writer import WriterDao
 from dao_director import DirectorDao
 from dao_genre import GenreDao
 from dao_reviewer import ReviewerDao
+from dao_review import ReviewDao
+import json
 
 
 class ApiService:
@@ -13,6 +15,7 @@ class ApiService:
 	directorDao = DirectorDao()
 	genreDao = GenreDao()
 	reviewerDao = ReviewerDao()
+	reviewDao = ReviewDao()
 
 	def fetchAllMovieinfo(self, queryParams):
 		return self.movieinfoDao.fetchAllMovieinfo(queryParams)
@@ -39,6 +42,17 @@ class ApiService:
 		else:
 			return self.reviewerDao.insertReviewer(user)
 
+	def insertRating(self, rate):
+		insertedid = self.reviewDao.insertReview(rate)
+		rate['id']=insertedid
+		self.reviewDao.insertReviewerReviewMovieinfo(rate)
+		return rate
+
+	def updateRating(self, rate):
+		self.reviewDao.updateReview(rate)
+		return rate
+
+
 	def fetchAnalyticsDoughnut(self, query):
 		of = query['of']
 		if of == 'genre':
@@ -63,3 +77,4 @@ class ApiService:
 			return self.writerDao.fetchWriterByAnalyticsBar(id)
 	
 
+	

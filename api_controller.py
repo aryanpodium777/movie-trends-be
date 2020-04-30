@@ -48,6 +48,18 @@ def fetchAnalyticsDoughnutInfo():
 def fetchAnalyticsBarInfo():
 	return jsonify(apiService.fetchAnalyticsBar(request.args))
 
+
+@app.route('/rate',methods=['POST'])
+def rateInsert():
+	rate = request.get_json()
+	return jsonify(apiService.insertRating(rate))
+
+@app.route('/rate',methods=['PUT'])
+def rateUpdate():
+	rate = request.get_json()
+	return jsonify(apiService.updateRating(rate))
+
+
 @app.route('/user',methods=['POST'])
 def user():
 	user = request.get_json()

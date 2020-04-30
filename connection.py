@@ -28,6 +28,6 @@ class Connection(metaclass=Singleton):
                     result = cursor.fetchall()
                 return result
             else:
-                return 1
+                return cursor.lastrowid
         except Exception as e:
             print(e, '-------exception------')
