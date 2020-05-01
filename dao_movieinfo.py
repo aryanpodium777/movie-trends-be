@@ -3,6 +3,7 @@ from dao_genre import GenreDao
 from dao_director import DirectorDao
 from dao_writer import WriterDao
 from dao_actor import ActorDao
+from dao_review import ReviewDao
 from  model.movieinfo import Movieinfo
 from datetime import datetime, timedelta
 from singleton import Singleton
@@ -13,6 +14,7 @@ class MovieinfoDao(metaclass=Singleton):
 	directorDao = DirectorDao()
 	writerDao = WriterDao()
 	actorDao = ActorDao()
+	reviewDao = ReviewDao()
 
 	def fetchAllMovieinfo(self,queryParams):
 		inTheatre=queryParams.get('inTheatre')
@@ -49,7 +51,7 @@ class MovieinfoDao(metaclass=Singleton):
 				Country = record[12]
 				_Awards = record[13]
 				Poster = record[14]
-				rating = 3
+				rating = self.reviewDao.fetchRating(id)
 				votes = record[16] 
 				Type = record[17]
 				BoxOffice = record[18]
@@ -80,7 +82,7 @@ class MovieinfoDao(metaclass=Singleton):
 		Country = record[12]
 		_Awards = record[13]
 		Poster = record[14]
-		rating = 3
+		rating = self.reviewDao.fetchRating(id)
 		votes = record[16] 
 		Type = record[17]
 		BoxOffice = record[18]

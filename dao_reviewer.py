@@ -30,3 +30,5 @@ class ReviewerDao(metaclass=Singleton):
 		query = f"""SELECT * from reviewers where email='{user['email']}'"""
 		output = self.connection.run(query,True,[])
 		return output
+
+			
