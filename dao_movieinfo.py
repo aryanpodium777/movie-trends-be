@@ -38,26 +38,22 @@ class MovieinfoDao(metaclass=Singleton):
 			for record in output:
 				id=record[0]
 				title = record[1]
-				year = record[2]
-				Rated = record[3]
-				Released = record[4].strftime('%Y-%m-%d')
-				runtime  = record[5]
+				Released = record[2].strftime('%Y-%m-%d')
+				runtime  = record[3]
 				_Genre  = self.genreDao.fetchGenreByMovieinfoId(id)
 				_Director = self.directorDao.fetchDirectorByMovieinfoId(id)
 				_Writer = self.writerDao.fetchWriterByMovieinfoId(id)
 				_Actor = self.actorDao.fetchActorByMovieinfoId(id)
-				Plot = record[10]
-				Language = record[11]
-				Country = record[12]
-				_Awards = record[13]
-				Poster = record[14]
+				Plot = record[4]
+				Language = record[5]
+				Country = record[6]
+				Poster = record[7]
 				rating = self.reviewDao.fetchRating(id)
-				votes = record[16] 
-				Type = record[17]
-				BoxOffice = record[18]
-				Production = record[19]
-				movieinfoObj = Movieinfo(id,title,year,Rated,Released,runtime,_Genre,_Director,
-				_Writer,_Actor,Plot,Language,Country,_Awards,Poster,rating,votes,Type,BoxOffice,Production)
+				Type = record[8]
+				BoxOffice = record[9]
+				Production = record[10]
+				movieinfoObj = Movieinfo(id,title,Released,runtime,_Genre,_Director,
+				_Writer,_Actor,Plot,Language,Country,Poster,rating,Type,BoxOffice,Production)
 				list.append(movieinfoObj)
 		else:
 			return []
@@ -69,25 +65,21 @@ class MovieinfoDao(metaclass=Singleton):
 		record = self.connection.run(query,True,[movieinfoId])
 		id=record[0]
 		title = record[1]
-		year = record[2]
-		Rated = record[3]
-		Released = record[4].strftime('%Y-%m-%d')
-		runtime  = record[5]
+		Released = record[2].strftime('%Y-%m-%d')
+		runtime  = record[3]
 		_Genre  = self.genreDao.fetchGenreByMovieinfoId(id)
 		_Director = self.directorDao.fetchDirectorByMovieinfoId(id)
 		_Writer = self.writerDao.fetchWriterByMovieinfoId(id)
 		_Actor = self.actorDao.fetchActorByMovieinfoId(id)
-		Plot = record[10]
-		Language = record[11]
-		Country = record[12]
-		_Awards = record[13]
-		Poster = record[14]
+		Plot = record[4]
+		Language = record[5]
+		Country = record[6]
+		Poster = record[7]
 		rating = self.reviewDao.fetchRating(id)
-		votes = record[16] 
-		Type = record[17]
-		BoxOffice = record[18]
-		Production = record[19]
-		movieinfoObj = Movieinfo(id,title,year,Rated,Released,runtime,_Genre,_Director,
-		_Writer,_Actor,Plot,Language,Country,_Awards,Poster,rating,votes,Type,BoxOffice,Production)
+		Type = record[8]
+		BoxOffice = record[9]
+		Production = record[10]
+		movieinfoObj = Movieinfo(id,title,Released,runtime,_Genre,_Director,
+		_Writer,_Actor,Plot,Language,Country,Poster,rating,Type,BoxOffice,Production)
 		return movieinfoObj
 		

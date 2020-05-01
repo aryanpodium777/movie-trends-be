@@ -1,10 +1,8 @@
 class Movieinfo(dict):
-	def __init__(self,id ,Title ,Year,Rated,Released,Runtime,_Genre,_Director,_Writer,_Actor,Plot,Language,Country,_Awards,Poster,rating,votes ,Type,BoxOffice,Production):
+	def __init__(self,id ,Title ,Released,Runtime,_Genre,_Director,_Writer,_Actor,Plot,Language,Country,Poster,rating,Type,BoxOffice,Production):
 		dict.__init__(self,
 		id=id, 
 		title = Title, 
-		year = Year, 
-		Rated = Rated,
 		Released = Released,
 		runtime  = Runtime,
 		_Genre  = _Genre,
@@ -14,10 +12,8 @@ class Movieinfo(dict):
 		Plot = Plot,
 		Language = Language,
 		Country = Country,
-		_Awards = _Awards,
 		Poster = Poster,
 		rating = rating,
-		votes = votes, 
 		Type = Type,
 		BoxOffice = BoxOffice,
 		Production = Production
