@@ -28,7 +28,7 @@ class ReviewDao(metaclass=Singleton):
 					WHERE rvm.`movie_info_id`= %s """
 		output = self.connection.run(query, True, [movieinfoId])   
 		if output[1]:
-			return output[1]
+			return str(output[1])
 		return 0
 
 	def fetchReview(self,movieinfoId,reviewerID):
