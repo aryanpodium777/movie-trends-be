@@ -75,6 +75,9 @@ class ApiService:
 			return self.directorDao.fetchDirectorByAnalyticsBar(id)
 		elif of == 'writer':
 			return self.writerDao.fetchWriterByAnalyticsBar(id)
+
+	def fetchReview(self, movieinfoId,reviewerID):
+		return self.reviewDao.fetchReview(movieinfoId,reviewerID)
 	
 
 	

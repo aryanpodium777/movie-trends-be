@@ -59,6 +59,10 @@ def rateUpdate():
 	rate = request.get_json()
 	return jsonify(apiService.updateRating(rate))
 
+@app.route('/rating/<string:movieInfoId>/<string:reviewerID>',methods=['GET'])
+def fetchReview(movieInfoId,reviewerID):
+	return jsonify(apiService.fetchReview(movieInfoId,reviewerID))
+
 
 @app.route('/user',methods=['POST'])
 def user():
