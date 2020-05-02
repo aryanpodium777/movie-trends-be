@@ -52,7 +52,8 @@ class ActorDao(metaclass=Singleton):
 		list = []
 		for record in output:
 			year = record[0],
-			box_office_collection = record[1]
+			year = year[0]
+			box_office_collection = str(record[1])
 			actorObj = AnalyticsBar(year,box_office_collection)
 			list.append(actorObj)
 		return list
