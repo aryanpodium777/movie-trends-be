@@ -9,11 +9,12 @@ class ReviewerDao(metaclass=Singleton):
 					VALUES ('{user['name']}','{user['email']}',
 					'{user['photoUrl']}','{user['firstName']}','{user['lastName']}',
 					'{user['authToken']}','{user['idToken']}')"""
-		output = self.connection.run(query,False,[],False)
-		if output==1:
+		id = self.connection.run(query,False,[],False)
+		user['id']=id
+		if id:
 			return user
 		else:
-			raise ValueError('Error')
+			raise ValueError('Error-INSERT')
 
 		
 	def updateReviewer(self,user):
