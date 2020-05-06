@@ -20,16 +20,12 @@ class ReviewerDao(metaclass=Singleton):
 	def updateReviewer(self,user):
 		query = f"""UPDATE reviewers set authToken='{user['authToken']}'
 					WHERE email='{user['email']}'"""
-		print(query)
-		output = self.connection.run(query,False,[],False)
-		if output:
-			return output
-		else:
-			raise ValueError('Error')
+		self.connection.run(query,False,[],False)
+		return user
+
 
 	def fetchReviwer(self,user):
 		query = f"""SELECT * from reviewers where email='{user['email']}'"""
-		output = self.connection.run(query,True,[])
-		return output
+		return self.connection.run(query,True,[],True)
 
 			

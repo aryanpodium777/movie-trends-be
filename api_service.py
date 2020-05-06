@@ -36,9 +36,11 @@ class ApiService:
 		return self.genreDao.fetchAllGenreinfo()
 
 	def signInSignUp(self, user):
-		isUser = self.reviewerDao.fetchReviwer(user)
-		if isUser:
-			return self.reviewerDao.updateReviewer(user)
+		userDb = self.reviewerDao.fetchReviwer(user)
+		if userDb:
+			self.reviewerDao.updateReviewer(user)
+			user['id']=userDb[0]
+			return user
 		else:
 			return self.reviewerDao.insertReviewer(user)
 
