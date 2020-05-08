@@ -63,6 +63,10 @@ def rateUpdate():
 def fetchReview(movieInfoId,reviewerID):
 	return jsonify(apiService.fetchReview(movieInfoId,reviewerID))
 
+@app.route('/movie-info/year/<string:year>',methods=['GET'])
+def fetchMovieDetailsYearwise(year):
+	return jsonify(apiService.fetchMovieDetailsYearwise(request.args,year))	
+
 
 @app.route('/user',methods=['POST'])
 def user():

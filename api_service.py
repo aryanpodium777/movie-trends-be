@@ -80,6 +80,16 @@ class ApiService:
 
 	def fetchReview(self, movieinfoId,reviewerID):
 		return self.reviewDao.fetchReview(movieinfoId,reviewerID)
-	
 
-	
+
+	def fetchMovieDetailsYearwise(self, query,year):
+		of = query['of']
+		id = query['id']
+		if of == 'genre':
+			return self.movieinfoDao.fetchMovieDetailsByGenreMapping(id,year)
+		elif of == 'actor':
+			return self.movieinfoDao.fetchMovieDetailsByActorMapping(id,year)
+		elif of == 'director':
+			return self.movieinfoDao.fetchMovieDetailsByDirectorMapping(id,year)
+		elif of == 'writer':
+			return self.movieinfoDao.fetchMovieDetailsByWriterMapping(id,year)	
